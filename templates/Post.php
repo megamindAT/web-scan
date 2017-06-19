@@ -74,7 +74,12 @@ article {
 <?php foreach ($posts as $post):   ?>
 <tr>
 
+    
+    <?php if ($_SESSION['username'] == 'admin'){ ?>
     <td> <a href="?action=delete&item=<?php print $post[ip]; ?>">Delete</a> </td>
+<?php }elseif($_SESSION['username'] == $post[user]) { ?>
+    <td> <a href="?action=delete&item=<?php print $post[ip]; ?>">Delete</a> </td>
+<?php }else{ echo "<td>Nope!</td>"; } ?>
    <!--  <td> <input type="checkbox" name="dell" value="Dell"></td>    -->   
     <td><?php echo $post[ip]; ?></td>
     <td><?php echo $post[status]; ?></td>
