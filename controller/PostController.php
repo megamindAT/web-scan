@@ -11,21 +11,19 @@ class PostController{
   }
   	public function UpLoad(){
   		if(isset($_POST["submit"])){ 
+			
   			if ($_FILES["fileToUpload"]['type'] != 'text/plain') {
  			echo "<span>File could not be accepted ! Please upload any '*.txt' file.</span>";
  			exit();
  			}
- 		$content = $_FILES['fileToUpload']['tmp_name'];
-  		/*$file = fopen($content,"r") or exit("Unable to open file!");
-  		while(!feof($file)) {
-  			echo fgets($file). "";
-  		}*/
-  		}
-		
-		require_once('models/PostModels.php');
-		$postModel = new PostModel();
-		$postModel->Handerdb($content);
-
+			$FileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
+			if($FileType == "txt" ) {
+ 				$content = $_FILES['fileToUpload']['tmp_name'];
+				require_once('models/PostModels.php');
+				$postModel = new PostModel();
+				$postModel->Handerdb($content);
+			}
+		}
 		
 
   	}
