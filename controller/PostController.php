@@ -72,6 +72,7 @@ class PostController{
   	public function LogOut(){
   		unset($_SESSION["username"]);
   		unset($_SESSION["role"]);
+		unset($_SESSION["valid"];
   		header("Location: /");
 
   	}
